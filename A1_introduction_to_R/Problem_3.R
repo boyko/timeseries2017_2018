@@ -3,9 +3,7 @@
 
 # 1)
 
-# Install packages. Uncomment the next line and run it if you
-# dplyr and ggplot2 are not installed in your R instance.
-# You need to install packages only once!
+# Install packages. Uncomment the next line and run it if dplyr and ggplot2 are not installed in your R instance.
 # install.packages(c('dplyr', 'ggplot2'))
 
 # Load the packages
