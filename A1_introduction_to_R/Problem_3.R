@@ -3,10 +3,14 @@
 
 # 1)
 
-# Install packages (needs to run only once)
-install.packages(c('dplyr', 'ggplot2'))
+# Install packages. Uncomment the next line and run it if you
+# dplyr and ggplot2 are not installed in your R instance.
+# You need to install packages only once!
+# install.packages(c('dplyr', 'ggplot2'))
 
 # Load the packages
+# You need to install packages only once, but in order to use them
+# you need to load them every time you start a new R session.
 library(dplyr)
 library(ggplot2)
 
