@@ -1,6 +1,7 @@
 
 # a)
 # install.packages('xts')
+library(ggplot2)
 library(xts)
 
 # b) 
@@ -20,7 +21,27 @@ plot(btc)
 
 # e)
 
-btc_l1 <- lag(btc_1)
+mean(btc['2017-06'])
+mean(btc['2017-10'])
+
+# f)
+
+range(btc['/2017-08-31'])
+range(btc['2017-09-01/'])
+
+# g) 
+
+weeklyBtcMean <- apply.weekly(btc, mean)
+plot(weeklyBtcMean)
+
+# h)
+
+weeklyBtcSd <- apply.weekly(btc, sd)
+plot(weeklyBtcSd)
+
+# i)
+
+btc_l1 <- lag(btc)
 
 ggplot(data.frame(btc = btc, btc_l1 = btc_l1), aes(x = btc_l1, y = btc)) + 
   geom_point() + 
@@ -29,10 +50,10 @@ ggplot(data.frame(btc = btc, btc_l1 = btc_l1), aes(x = btc_l1, y = btc)) +
   ylab('USD/BTC t - 1')
 
 
-# f)
+# j)
 
 mu <- mean(btc)
-
+mu
 gamma1 <- (1/length(btc)) * sum((btc - mu) * (btc_l1 - mu), na.rm = TRUE)
 gamma0 <- (1/length(btc)) * sum((btc - mu) ^ 2)
 gamma0
@@ -41,7 +62,7 @@ gamma1
 rho1 <- gamma1/gamma0
 rho1
 
-# g)
+# k)
 
 # Plot the autocorrelation coefficients
 acf(btc)
@@ -49,14 +70,17 @@ acf(btc)
 # Print the autocorrelation coefficients
 acf(btc, plot = FALSE)
 
+# l) Ljung–Box test for autocorrelation of up to order 10
 
-# h) 
+Box.test(btc, lag = 10, type = 'Ljung')
+
+# m)
 
 logChange <- log(btc) - log(btc_l1)
 plot(logChange)
 
-# i)
-
-plot(logChange)
+# n)
 
 acf(logChange, na.action = na.omit)
+
+Box.test(logChange, lag = 10, type = 'Ljung')
